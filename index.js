@@ -42,23 +42,28 @@ const getCurrentTime = ()=>{
 setInterval(getCurrentTime,1000)
 
 //Get current location for weather => then fetch the weather info from api base on the current location
-navigator.geolocation.getCurrentPosition(position => {
-    //fetch the weather base on the area
-    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`)
-        .then(res => {
-            if (!res.ok) {
-                throw Error("Weather data not available")
-            }
-            return res.json()
-        })
-        .then(data => {
-            console.log(data)
-            const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-            document.getElementById("weather").innerHTML = `
-                <img src=${iconUrl} />
-                <p class="weather-temp">${Math.round(data.main.temp)}º</p>
-                <p class="weather-city">${data.name}</p>
-            `
-        })
-        .catch(err => console.error(err))
-});
+navigator.geolocation.getCurrentPosition(
+    position => {
+        fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`)
+            .then(res => {
+                if (!res.ok) throw Error("Weather data not available");
+                return res.json();
+            })
+            .then(data => {
+                const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                document.getElementById("weather").innerHTML = `
+                    <img src="${iconUrl}" />
+                    <p class="weather-temp">${Math.round(data.main.temp)}º</p>
+                    <p class="weather-city">${data.name}</p>
+                `;
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById("weather").textContent = "Weather unavailable";
+            });
+    },
+    error => {
+        console.error("Geolocation failed:", error);
+        document.getElementById("weather").textContent = "Weather unavailable";
+    }
+);
