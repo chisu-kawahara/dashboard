@@ -8,4 +8,11 @@ fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&que
     .catch (error => {
         console.error("Something went wrong")
         document.body.style.backgroundImage = `url("https://live.staticflickr.com/2021/1524780802_1cc8e11f3a.jpg")`
+        document.getElementById("author").textContent = `By: Dodi Achmad`
     })
+
+
+fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.error(err))
