@@ -9,6 +9,9 @@
 
 This project uses HTML + CSS + JavaScript and multiple APIs to create a dynamic homepage-like dashboard.
 
+# Demo Link
+https://chisu-kawahara.github.io/dashboard/
+
 # 🚀 Features
 
 ## 🖼️ Random Background Image
