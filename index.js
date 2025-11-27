@@ -44,7 +44,7 @@ setInterval(getCurrentTime,1000)
 //Get current location for weather => then fetch the weather info from api base on the current location
 navigator.geolocation.getCurrentPosition(position => {
     //fetch the weather base on the area
-    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`)
+    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`)
         .then(res => {
             if (!res.ok) {
                 throw Error("Weather data not available")
