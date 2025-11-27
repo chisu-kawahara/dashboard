@@ -39,3 +39,4 @@ const getCurrentTime = ()=>{
     document.getElementById("time").textContent = date.toLocaleTimeString("en-us", {timeStyle: "short"})
 }
 setInterval(getCurrentTime,1000)
+
